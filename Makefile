@@ -14,8 +14,8 @@ help:
 	@echo ""
 	@echo "  Targets"
 	@echo ""
-	@echo "    install  pip install -e ."
-	@echo "    test     Run align tests"
+	@echo "    install  pip install -U pip -e ."
+	@echo "    test     run test scripts"
 	@echo ""
 	@echo "  Variables"
 	@echo ""
@@ -24,6 +24,7 @@ help:
 
 # END-EVAL
 
+# pip install -U pip -e .
 install:
 	pip install -U pip -e .
 #

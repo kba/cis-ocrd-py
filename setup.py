@@ -19,20 +19,17 @@ Installs:
     - ocrd-cis-importer
 """
 
-import codecs
+from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 
-with codecs.open('README.md', encoding='utf-8') as f:
-    README = f.read()
-
 setup(
-    include_package_data = True,
+    include_package_data=True,
     name='cis-ocrd',
-    version='0.0.4',
+    version='0.0.5',
     description='CIS OCR-D command line tools',
-    long_description=README,
-    long_description_content_type='text/markdown',
+    long_description=Path('README.md').read_text(),
+    long_description_content_type="text/markdown",
     author='Florian Fink, Tobias Englmeier, Christoph Weber',
     author_email='finkf@cis.lmu.de, englmeier@cis.lmu.de, web_chris@msn.com',
     url='https://github.com/cisocrgroup/cis-ocrd-py',
