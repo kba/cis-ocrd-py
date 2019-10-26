@@ -6,6 +6,8 @@ LOGLEVEL = DEBUG
 # Whether temporary directories should be kept
 PERSISTENT = no
 
+DOCKER_TAG = ocrd/cis_ocrd
+
 export
 
 # BEGIN-EVAL makefile-parser --make-help Makefile
@@ -16,6 +18,7 @@ help:
 	@echo ""
 	@echo "    install  pip install -U pip -e ."
 	@echo "    test     run test scripts"
+	@echo "    docker   Build Docker image"
 	@echo ""
 	@echo "  Variables"
 	@echo ""
@@ -39,4 +42,9 @@ test: $(TEST_SCRIPTS)
 
 clean:
 	$(RM) -r tests/venv
+
+# Build Docker image
+docker:
+	docker build -t '$(DOCKER_TAG)' .
+
 .PHONY: install test clean
