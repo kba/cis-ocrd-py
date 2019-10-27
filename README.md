@@ -5,6 +5,49 @@
 
 [CIS](http://www.cis.lmu.de) [OCR-D](http://ocr-d.de) command line tools
 
+## Installation
+
+### Required ubuntu packages:
+
+```sh
+sudo apt-get install \
+  git \
+  build-essential \
+  python3 python3-pip \
+  libxml2-dev \
+  default-jdk
+```
+
+### From PyPI
+
+This is the best option if you want to use the stable, released version.
+
+```sh
+pip install cis-ocrd
+```
+
+### With docker
+
+This is the best option if you want to run the software in a container.
+
+```sh
+docker pull ocrd/cis_ocrd
+```
+
+### From git 
+
+This is the best option if you want to change the source code or install the latest, unpublished changes.
+
+We strongly recommend to use a [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/).
+
+```sh
+git clone https://github.com/OCR-D/ocrd_cis
+cd ocrd_cis
+pip install -e .
+```
+
+
+
 ## General usage
 
 ### Essential system packages
