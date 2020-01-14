@@ -1,6 +1,10 @@
 PY ?= python3
 PIP ?= pip3
 
+GITURL ?= "https://github.com/cisocrgroup"
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
+
 install:
 	${PIP} install --upgrade pip .
 install-devel:
@@ -18,4 +22,18 @@ $(TEST_SCRIPTS):
 # run test scripts
 test: $(TEST_SCRIPTS)
 
-.PHONY: install test
+
+build-profiler: PROFILER_BUILD_DIR := $(shell mktemp -d)
+build-profiler:
+	rm -rf $(PROFILER_BUILD_DIR) \
+	&& git clone ${GITURL}/Profiler --branch devel --single-branch $(PROFILER_BUILD_DIR) \
+	&& cd $(PROFILER_BUILD_DIR) \
+	&& mkdir build \
+	&& cd build \
+	&& cmake -DCMAKE_BUILD_TYPE=release .. \
+	&& make compileFBDic trainFrequencyList profiler \
+	&& cp bin/compileFBDic bin/trainFrequencyList bin/profiler $(BINDIR) \
+	&& cd / \
+	&& rm -rf $(PROFILER_BUILD_DIR)
+
+.PHONY: install test build-profiler
